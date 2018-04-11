@@ -161,14 +161,14 @@
     const encodedName = encodeURIComponent(name);
     const sanitizedName = encodedName.replace('\'','');
     
-    const nextUrl = `https://developers.zomato.com/api/v2.1/search?entity_type=city&entity_id=${cityId}&q=${sanitizedName}`;
+    const nextUrl = 'https://developers.zomato.com/api/v2.1/search?entity_type=city&entity_id=${cityId}&q=${sanitizedName}';
     console.log(nextUrl);
     $.ajax({
       url: nextUrl,
       headers: { 
           Accept : "text/plain; charset=utf-8",
           "Content-Type": "application/json charset=utf-8",
-          "user-key": "eb8bf080ab48519636920ff20fc6cf25"
+          "user-key": "user_key"
       },
       type: 'GET',
       contentType: "application/json",
