@@ -1,4 +1,10 @@
 // content.js
+  //chrome.runtime.sendMessage('Hello world');
+  let userkey;
+  chrome.runtime.onMessage.addListener(function(response, sender, sendResponse ) {
+    console.log(response);
+    userkey = response;
+  })
   token = "eb8bf080ab48519636920ff20fc6cf25";
   var $;
   let rating, restaurantName;
@@ -10,7 +16,6 @@
       console.log(cityId);
       return cityId;
   }
-
 
   let city_map = 
   {
@@ -168,7 +173,7 @@
       headers: { 
           Accept : "text/plain; charset=utf-8",
           "Content-Type": "application/json charset=utf-8",
-          "user-key": "user_key"
+          "user-key": user_key
       },
       type: 'GET',
       contentType: "application/json",

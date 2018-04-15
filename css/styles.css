@@ -1,21 +1,37 @@
+ body {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #5a6169;
+  background-color: #fff;
+ }
+
+ .container {
+   width: 100%;
+   padding-right: 15px;
+   padding-left: 15px;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
  #title {
  	font-size: 14px;
  	font-weight: bold;
  	text-align: center;
+  background-color: #f7f7f9;
  }	
 
  .box {
- 	height: 120px;
- 	width: 200px;
+ 	height: 130px;
+ 	width: 400px;
  }
 
  .input-value {
  	height: 20px;
- 	width: 100%;
-    border: 1px solid black;
-    display: block;
-    margin: 0 auto;
-    font-size: 13px;
+ 	width: 80%;
+  border: 1px solid #becad6;
+  display: block;
+  margin: 0 auto;
+  font-size: 13px;
  }
 
  .input-value:focus {
@@ -24,9 +40,18 @@
 
  .submit{
  	width: 120px;
- 	margin-top: 12px;
- 	margin-left: 14%;
+ 	margin: 0 auto;
+  margin-top: 12px;
+  display: block;
  	height: 30px;
  	color: white;
- 	background-color: #CB202D; 
+ 	background-color: #CB202D;
+  cursor: pointer; 
+ }
+
+ #error-mssg {
+    text-align: center;
+    margin-top: 7px;
+    color:unset;
+    font-weight: bold;
  }
