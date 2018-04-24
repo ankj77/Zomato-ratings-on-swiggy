@@ -1,11 +1,18 @@
 // content.js
-  //chrome.runtime.sendMessage('Hello world');
+  
   let userkey;
-  chrome.runtime.onMessage.addListener(function(response, sender, sendResponse ) {
-    console.log(response);
-    userkey = response;
-  })
-  token = "eb8bf080ab48519636920ff20fc6cf25";
+  chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+     
+    if (request.apiKey) {
+      userkey = request.apiKey;
+      startFetching();
+    }
+      //sendResponse({farewell: "goodbye"});
+  });
+
+
+  //token = "eb8bf080ab48519636920ff20fc6cf25";
   var $;
   let rating, restaurantName;
 
@@ -13,7 +20,7 @@
 
       const cityLowerCase = city.toLowerCase();
       const cityId = city_map[cityLowerCase];
-      console.log(cityId);
+      //console.log(cityId);
       return cityId;
   }
 
@@ -76,7 +83,7 @@
   }
 
 
-  (function() {
+  function startFetching() {
       // Load the script
       var script = document.createElement("SCRIPT");
       script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js';
@@ -105,7 +112,7 @@
       };
       document.getElementsByTagName("head")[0].appendChild(script);
 
-  })();
+  };
 
 
   function main() {
@@ -166,14 +173,14 @@
     const encodedName = encodeURIComponent(name);
     const sanitizedName = encodedName.replace('\'','');
     
-    const nextUrl = 'https://developers.zomato.com/api/v2.1/search?entity_type=city&entity_id=${cityId}&q=${sanitizedName}';
+    const nextUrl = `https://developers.zomato.com/api/v2.1/search?entity_type=city&entity_id=${cityId}&q=${sanitizedName}`;
     console.log(nextUrl);
     $.ajax({
       url: nextUrl,
       headers: { 
           Accept : "text/plain; charset=utf-8",
           "Content-Type": "application/json charset=utf-8",
-          "user-key": user_key
+          "user-key": userkey
       },
       type: 'GET',
       contentType: "application/json",
@@ -200,7 +207,7 @@
           //if (result.length > 1) { 
         //document.querySelectorAll('h1')[0].innerHTML = restaurantName + '  |  ' + rating_html + '☆';
         zomato_rating_html = '<div class="_2iUp9 _2GxGP" style = "border-left:1px solid hsla(0,0%,100%,.2);margin-left:20px" ><div class="_2l3H5"><span class="icon-star _2n5YQ"></span><span>' + rating_html + '</span></div><div class="_1De48">'+red_background_html+'</div></div>'
-        document.getElementsByTagName('div')[29].innerHTML += zomato_rating_html;
+        document.getElementsByTagName('div')[27].innerHTML += zomato_rating_html;
           //}
         }
         else {

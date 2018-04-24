@@ -26,7 +26,12 @@ window.addEventListener('load', function load(event){
                 if(myJson.code == 403)
                  document.getElementById('error-mssg').innerHTML = 'Invalid Api Key';    
                 else
-                 chrome.runtime.sendMessage(key);
+                // chrome.runtime.sendMessage(key);
+                 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                 chrome.tabs.sendMessage(tabs[0].id, {apiKey: key}, function(response) {
+                    console.log(response.farewell);
+                 });
+              });
            }) 
           .catch(error => {
           })
